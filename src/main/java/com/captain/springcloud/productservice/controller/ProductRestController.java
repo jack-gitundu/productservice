@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/productapi")
 public class ProductRestController {
@@ -28,6 +30,12 @@ public class ProductRestController {
         product.setPrice(product.getPrice().subtract(coupon.getDiscount()));
 
         return productRepository.save(product);
+    }
+
+    @GetMapping("/product/{id}")
+    public Product getProduct(@PathVariable Long id) {
+        Optional<Product> product = productRepository.findById(id);
+        return product.orElseThrow(null);
     }
 
 }
