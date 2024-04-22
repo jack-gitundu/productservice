@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 public class ProductRestController {
 
     @Autowired
-    ProductRepository productRepository;
+    private ProductRepository productRepository;
 
     @Autowired
     private RestTemplate restTemplate;
